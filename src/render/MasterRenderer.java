@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import entities.FlyCam;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
@@ -75,9 +76,30 @@ public class MasterRenderer {
         entities.clear();
     }
 
+    public void render(Light sun, FlyCam camera){
+        prepare();
+
+        shader.start();
+        shader.loadSkyColour(RED, GREEN, BLUE);
+        shader.loadLight(sun);
+        shader.loadViewMatrix(camera);
+        renderer.render(entities);
+        shader.stop();
+
+        terrainShader.start();
+        terrainShader.loadSkyColour(RED, GREEN, BLUE);
+        terrainShader.loadLight(sun);
+        terrainShader.loadViewMatrix(camera);
+        terrainRenderer.render(terrains);
+        terrainShader.stop();
+        terrains.clear();
+        entities.clear();
+    }
+
     public void processTerrain(Terrain terrain){
         terrains.add(terrain);
     }
+
     public void processEntity(Entity entity){
         TexturedModel entityModel = entity.getModel();
         List<Entity> batch = entities.get(entityModel);

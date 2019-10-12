@@ -1,5 +1,6 @@
 package toolbox;
 
+import entities.FlyCam;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -43,6 +44,19 @@ public class Maths {
         Matrix4f.rotate((float)Math.toRadians(camera.getYaw()), new Vector3f(0,1,0), viewMatrix, viewMatrix);
         Matrix4f.rotate((float)Math.toRadians(camera.getRoll()), new Vector3f(0,0,1), viewMatrix, viewMatrix); // we are not using roll
         Vector3f cameraPos = camera.getPosition();
+        Vector3f negativeCameraPos = new Vector3f(-cameraPos.x, -cameraPos.y, -cameraPos.z);
+        Matrix4f.translate(negativeCameraPos, viewMatrix, viewMatrix);
+        return viewMatrix;
+    }
+
+    public static Matrix4f createViewMatrix(FlyCam camera){
+        Matrix4f viewMatrix = new Matrix4f();
+
+        viewMatrix.setIdentity();
+        Matrix4f.rotate((float)Math.toRadians(camera.getRotationX()), new Vector3f(1,0,0), viewMatrix, viewMatrix);
+        Matrix4f.rotate((float)Math.toRadians(camera.getRotationY()), new Vector3f(0,1,0), viewMatrix, viewMatrix);
+        //Matrix4f.rotate((float)Math.toRadians(camera.getRoll()), new Vector3f(0,0,1), viewMatrix, viewMatrix); // we are not using roll
+        Vector3f cameraPos = camera.getPos();
         Vector3f negativeCameraPos = new Vector3f(-cameraPos.x, -cameraPos.y, -cameraPos.z);
         Matrix4f.translate(negativeCameraPos, viewMatrix, viewMatrix);
         return viewMatrix;

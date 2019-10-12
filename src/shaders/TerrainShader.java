@@ -1,5 +1,6 @@
 package shaders;
 
+import entities.FlyCam;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -83,6 +84,11 @@ public class TerrainShader extends ShaderProgram {
         super.loadVector(location_lightColour, light.getColour());
     }
     public void loadViewMatrix(Camera camera) {
+        Matrix4f viewMatrix = Maths.createViewMatrix(camera);
+        super.loadMatrix(location_viewMatrix, viewMatrix);
+    }
+
+    public void loadViewMatrix(FlyCam camera) {
         Matrix4f viewMatrix = Maths.createViewMatrix(camera);
         super.loadMatrix(location_viewMatrix, viewMatrix);
     }

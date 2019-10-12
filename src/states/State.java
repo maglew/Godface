@@ -14,16 +14,12 @@ public abstract class State {
         return currentState;
     }
 
-    //CLASS
 
-
-
-   // public State(Handler handler){
-    //    this.handler = handler;
-    //}
 
     public abstract void tick();
 
-    public abstract void render(Graphics g);
+    public abstract void cleanup();
+
+    public abstract void render();
 
 }
