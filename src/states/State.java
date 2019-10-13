@@ -1,6 +1,7 @@
 package states;
 
-import java.awt.*;
+
+import core.Handler;
 
 public abstract class State {
 
@@ -14,7 +15,11 @@ public abstract class State {
         return currentState;
     }
 
+    protected Handler handler;
 
+    public State(Handler handler){
+        this.handler = handler;
+    }
 
     public abstract void tick();
 

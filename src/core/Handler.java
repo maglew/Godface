@@ -1,11 +1,15 @@
 package core;
 
 public class Handler {
-    private MainGameLoop mainGameLoop;
+    private GameLoop mainGameLoop;
 
 
-    public Handler(MainGameLoop mainGameLoop)
+    public Handler(GameLoop mainGameLoop)
     {this.mainGameLoop=mainGameLoop;}
+
+    public GameLoop getGame() {
+        return mainGameLoop;
+    }
 
 
 }
