@@ -33,7 +33,7 @@ public class MenuState extends State {
 
         TextMaster.init(loader);
 
-        FontType font = new FontType(loader.loadTexture("verdana"), new File("res/verdana.fnt"));
+        FontType font = new FontType(loader.loadFontTexture("verdana"), new File("res/fonts/verdana.fnt"));
         GUIText text = new GUIText("Main Menu", 4f, font, new Vector2f(0f, 0f), 1f, true);
         GUIText text2 = new GUIText("Click Space", 3f, font, new Vector2f(0f, 0.2f), 1f, true);
         text.setColour(1, 0, 0);

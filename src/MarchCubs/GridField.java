@@ -6,11 +6,21 @@ public class GridField
 {
     Vector3f begin;
     Vector3f end;
-    Gridcell grids[];
+    Gridcell grids[][][];
+    float square;
 
-    public GridField(Vector3f begin, Vector3f end) {
+    public GridField(Vector3f begin, Vector3f end)
+    {
         this.begin = begin;
         this.end = end;
+        square=Math.abs(end.x-begin.x*end.y-begin.y*end.z-begin.z);
+        Gridcell grids[][][]=new Gridcell[(int)(end.x-begin.x)][(int)(end.y-begin.y) ][(int)(end.y-begin.y)];
+
+    }
+
+    void fit()
+    {
+
 
     }
 }

@@ -1,5 +1,8 @@
 package states;
 
+import MarchCubs.Block;
+import MarchCubs.GridField;
+import MarchCubs.Gridcell;
 import core.Handler;
 import entities.*;
 import fontMeshCreator.FontType;
@@ -76,6 +79,15 @@ public class GameState extends State
         GUIText text = new GUIText("Main Menu", 1f, font, new Vector2f(0.2f, 0f), 1f, true);
         text.setColour(0, 0, 0);
         */
+        //TexturedModel vox = new TexturedModel(OBJLoader.loadObjModel("test",  loader), new ModelTexture(loader.loadTexture("white")));
+        TexturedModel box = new TexturedModel(OBJLoader.loadObjModel("box",  loader), new ModelTexture(loader.loadTexture("red")));
+       entities.add(new Entity(box, new Vector3f(-10, -10, -10), 0,  0, 0, 1f));
+       // entities.add(new Entity(vox, new Vector3f(0, 0, 0), 0,  0, 0, 1f));
+            //GridField gr=new GridField(new Vector3f(0,0,0),new Vector3f(1,1,1));
+       /* Block a=new Block();
+        RawModel model = loader.loadToVAO(a.vertices,a.textureCoords,a.indices);
+        TexturedModel staticModel = new TexturedModel(model,new ModelTexture(loader.loadTexture("image")));
+        entities.add(new Entity(staticModel, new Vector3f(0, 0, 0), 0,  0, 0, 1f));*/
     }
 
     public void cleanup()
@@ -100,7 +112,7 @@ public class GameState extends State
         // camera.move();
         //player.move(terrain);
         //renderer.processEntity(player);
-        renderer.processTerrain(terrain);
+       // renderer.processTerrain(terrain);
 
         for (Entity entity : entities){
             renderer.processEntity(entity);
